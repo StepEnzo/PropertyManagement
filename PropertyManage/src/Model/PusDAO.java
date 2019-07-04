@@ -208,6 +208,44 @@ public class PusDAO {
 			}
 		}
 	}
+
+                /*
+	 * 通过输入的userid,propertyid，status查询资产被领取的时间，如果归还时间与领取时间超过30天，则扣除用户10点信用分
+	 * @param userid 用户id
+	 * @param propertyid 资产id
+	 * @param  status 当前的状态
+	 * @return Boolean值，是否按时归还。
+	 */
+	public boolean changeUserRank(int userid,int propertyid,String status){
+		Connection conn = null;
+		try {
+			conn = Mysql.getCon();
+			Statement stmt = conn.createStatement();
+			String sql="select date form pus where status = '"+status+"' and userid = "+userid+" and propertyid ="+propertyid; 
+			ResultSet rs=stmt.executeQuery(sql);
+			java.sql.Date date = rs.getDate("date");
+			java.util.Date d=new java.util.Date (date.getTime());
+			long day=(System.currentTimeMillis()-d.getTime())/(1000*60*60*24);
+			if (day>=30){
+				String sql1="update user set rank=(rank-10) where userid = "+userid; 
+				stmt.executeQuery(sql1);
+				return false;
+			}else
+				return true;
+			
+	}catch (SQLException s) {
+		System.out.println(s);	
+		return false;
+	}
+		finally {
+			if (conn != null) {
+				try {					
+					conn.close();					
+				} catch (SQLException ignore) {					
+				}
+			}
+		}
+	}
 	
 	/*
 	 * 通过用户id和记录表状态 返回PusTable的列表
