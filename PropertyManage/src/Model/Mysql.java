@@ -11,8 +11,9 @@ package Model;
 	public class Mysql {
 
 		public static final String url = "jdbc:mysql://localhost:3306/property?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false&serverTimezone=UTC&autoReconnect=true";
+		//public static final String url = "jdbc:mysql://localhost:3306/property?useUnicode=true&characterEncoding=UTF-8";
 		public static final String user = "root";
-		public static final String password = "470820";
+		public static final String password = "123456";
 //
 //		public  static Connection getConn() {
 //	
