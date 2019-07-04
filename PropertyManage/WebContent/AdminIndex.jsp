@@ -70,6 +70,12 @@
             添加用户
         </button>
     </a>
+        <a href="ChangeCreditValueServlet">
+        <button type="button" class="button2"  onmouseover="this.style.backgroundColor='#9DC45F';this.style.color='#FFFFFF';"
+                onmouseout="this.style.backgroundColor='';this.style.color='#000000';">
+            恢复信用值
+        </button>
+    </a>
 </div>
 </body>
 </html>

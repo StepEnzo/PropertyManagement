@@ -204,4 +204,32 @@ public class AdminDao {
 	}
 		
 	}
+	
+	public int changecreditvalue( ) throws SQLException{
+		Connection conn = null;
+		try {
+			conn=Mysql.getCon();
+			Statement stmt = conn.createStatement();
+			int creditvalue=100;
+			String sql="update user set user.rank = 100";
+			System.out.println(sql);
+			int judge=stmt.executeUpdate(sql);
+			System.out.println(judge);
+			if(judge>0) 	return 1;
+			else return 0;
+	}catch (SQLException s) {
+		System.out.println(s);	
+		return 0;
+	}
+		finally {
+		if (conn != null) {
+			try {					
+				conn.close();					
+			} catch (SQLException ignore) {					
+			}
+		}
+		}
+	}
+	
+	
 }

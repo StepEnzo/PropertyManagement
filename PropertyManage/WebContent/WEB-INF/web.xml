@@ -316,6 +316,7 @@
     <servlet-name>allUserServlet</servlet-name>
     <url-pattern>/allUserServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>SuperAdminLogin</display-name>
@@ -326,4 +327,16 @@
     <servlet-name>SuperAdminLogin</servlet-name>
     <url-pattern>/SuperAdminLogin</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ChangeCreditValueServlet</display-name>
+    <servlet-name>ChangeCreditValueServlet</servlet-name>
+    <servlet-class>AdminServlet.ChangeCreditValueServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeCreditValueServlet</servlet-name>
+    <url-pattern>/ChangeCreditValueServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
