@@ -8,10 +8,10 @@ import java.sql.Date;
  */
 public class Pus {
 	
-	private	int propertyid; //×Ê²úid
-	private	int userid;  //ÓÃ»§id
-	private	Date date;  //±íµ¥Éú³ÉÈÕÆÚ
-	private	String status; //±íµ¥×´Ì¬
+	private	int propertyid; //èµ„äº§id
+	private	int userid;  //ç”¨æˆ·id
+	private	Date date;  //è¡¨å•ç”Ÿæˆæ—¥æœŸ
+	private	String status; //è¡¨å•çŠ¶æ€
 	
 	
 	

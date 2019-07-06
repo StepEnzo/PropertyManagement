@@ -64,12 +64,6 @@
             查询用户
         </button>
     </a>
-     <a href="AddUser.jsp">
-        <button type="button" class="button2"  onmouseover="this.style.backgroundColor='#9DC45F';this.style.color='#FFFFFF';"
-                onmouseout="this.style.backgroundColor='';this.style.color='#000000';">
-            添加用户
-        </button>
-    </a>
         <a href="ChangeCreditValueServlet">
         <button type="button" class="button2"  onmouseover="this.style.backgroundColor='#9DC45F';this.style.color='#FFFFFF';"
                 onmouseout="this.style.backgroundColor='';this.style.color='#000000';">

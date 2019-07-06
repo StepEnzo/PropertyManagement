@@ -42,7 +42,7 @@ public class UserInformation extends HttpServlet {
 		session.setAttribute("useid", user.getId());
 		session.setAttribute("useaccound", user.getAccount());
 		session.setAttribute("usepassword", user.getPassword());
-		session.setAttribute("usephone", user.getPhone());
+		session.setAttribute("usephone", user.getEmail());
 		session.setAttribute("usename", user.getUsername());
 		
 		request.getRequestDispatcher( "UserInformation.jsp").forward(request,response);

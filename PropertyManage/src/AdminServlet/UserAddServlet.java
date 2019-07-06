@@ -28,12 +28,12 @@ public class UserAddServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String account  = request.getParameter("account");
 		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 	//	User user = new User();
 		
 		int isAddSuccess = -1;
-		isAddSuccess = userDAO.add(account,password,phone,username);
+		isAddSuccess = userDAO.add(account,password,email,username);
 		if (isAddSuccess == 1)
 		{   
 //			user.setAccount(account);

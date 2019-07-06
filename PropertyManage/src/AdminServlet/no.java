@@ -55,10 +55,10 @@ public class no extends HttpServlet {
     	java.sql.Date date = new java.sql.Date(d.getTime());
 
 		PusDAO pusDAO = new PusDAO();
-    	boolean f=pusDAO.changeStatus(userid, pid, "´ıÉóºË", "ÒÑ¾Ü¾ø", date);
+    	boolean f=pusDAO.changeStatus(userid, pid, "å¾…å®¡æ ¸", "å·²æ‹’ç»", date);
     	if(f==false) {
     		PrintWriter out=response.getWriter();
-    		out.print("<script>alert('²Ù×÷Ê§°Ü£¬ÇëÖØÊÔ');window.location='ShenheServlet';</script>");
+    		out.print("<script>alert(æ“ä½œå¤±è´¥ï¼Œè¯·é‡è¯•');window.location='ShenheServlet';</script>");
 
     	}
 		

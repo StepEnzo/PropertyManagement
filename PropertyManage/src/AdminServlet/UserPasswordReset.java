@@ -24,9 +24,9 @@ public class UserPasswordReset extends HttpServlet{
 	        UserDAO userDao = new UserDAO();
 	        int flag = userDao.update1(id);
 	        if (flag == 1) {
-	        	out.print("<script>alert('ÖØÖÃ³É¹¦£¡');window.location='allUserServlet';</script>");
+	        	out.print("<script>alert('é‡ç½®æˆåŠŸï¼');window.location='allUserServlet';</script>");
         } else {
-        	out.print("<script>alert('ÖØÖÃÊ§°Ü£¡');window.location='allUserServlet';</script>");
+        	out.print("<script>alert('é‡ç½®å¤±è´¥ï¼');window.location='allUserServlet';</script>");
 	        }
 
 	    }

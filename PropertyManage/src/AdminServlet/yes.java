@@ -50,10 +50,10 @@ public class yes extends HttpServlet {
     	java.sql.Date date = new java.sql.Date(d.getTime());
     	PropertyDAO propertyDAO = new PropertyDAO();
 		try {
-			boolean f1= propertyDAO.updateStatus(pid, "²»¿ÉÓÃ");
+			boolean f1= propertyDAO.updateStatus(pid, "ä¸å¯ç”¨");
 			if(f1==false) {
 	    		PrintWriter out=response.getWriter();
-	    		out.print("<script>alert('²úÆ·×´Ì¬¸ü¸ÄÊ§°Ü£¬ÇëÖØÊÔ');window.location='ShenheServlet';</script>");
+	    		out.print("<script>alert('äº§å“çŠ¶æ€æ›´æ”¹å¤±è´¥ï¼Œè¯·é‡è¯•');window.location='ShenheServlet';</script>");
 
 	    	}
 		} catch (SQLException e) {
@@ -61,10 +61,10 @@ public class yes extends HttpServlet {
 			e.printStackTrace();
 		}
 		PusDAO pusDAO = new PusDAO();
-    	boolean f=pusDAO.changeStatus(userid, pid, "´ıÉóºË", "ÒÑÁìÈ¡", date);
+    	boolean f=pusDAO.changeStatus(userid, pid, "å¾…å®¡æ ¸", "å·²é¢†å–", date);
     	if(f==false) {
     		PrintWriter out=response.getWriter();
-    		out.print("<script>alert('Åú×¼Ê§°Ü£¬ÇëÖØÊÔ');window.location='ShenheServlet';</script>");
+    		out.print("<script>alert('æ‰¹å‡†å¤±è´¥ï¼Œè¯·é‡è¯•');window.location='ShenheServlet';</script>");
 
     	}
 		

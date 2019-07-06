@@ -11,14 +11,14 @@ import java.sql.*;
  *
  */
 public class PropertyTable {
-	private int pid;//ÆóÒµ×Ê²úµ¥¸öÎïÆ·µÄid
-	private int id;  //ÆóÒµ×Ê²úÀà±ğµÄid
-	private String propertyname;//ÆóÒµ×Ê²úÃû³Æ
-	private String brand;//Æ·ÅÆ
-	private String modelnumber;//ĞÍºÅ
-	private String specification;//¹æ¸ñ
-	private String status;//×´Ì¬£¬±íÊ¾´Î×Ê²úµ±Ç°ÊÇ·ñ¿É±»ÁìÓÃ
-	private Date date; //²É¹ºÈÕÆÚ
+	private int pid;//ä¼ä¸šèµ„äº§å•ä¸ªç‰©å“çš„id
+	private int id;  //ä¼ä¸šèµ„äº§ç±»åˆ«çš„id
+	private String propertyname;//ä¼ä¸šèµ„äº§åç§°
+	private String brand;//å“ç‰Œ
+	private String modelnumber;//å‹å·
+	private String specification;//è§„æ ¼
+	private String status;//çŠ¶æ€ï¼Œè¡¨ç¤ºæ¬¡èµ„äº§å½“å‰æ˜¯å¦å¯è¢«é¢†ç”¨
+	private Date date; //é‡‡è´­æ—¥æœŸ
 	/**
 	 * 
 	 */

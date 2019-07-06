@@ -6,7 +6,7 @@ package Model;
 import java.sql.*;
 
 /**
- * @author ºÎÁúÏè
+ * @author ä½•é¾™ç¿”
  *
  */
 public class SuperAdminDAO {

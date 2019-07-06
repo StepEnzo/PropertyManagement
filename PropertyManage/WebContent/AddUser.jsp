@@ -25,7 +25,7 @@ function checkForm(){
 	}
 	var id4=document.getElementById("4").value;
 	if (id4==null||id4==''){
-			alert("电话号码不能为空！");
+			alert("邮箱不能为空！");
 			return false;
 	}
 	}
@@ -154,12 +154,12 @@ table.style td {
     <td width="350px"><input id="2" type="password" name="password" placeholder="请输入密码"></td>
     </tr>
     <tr>
-    <td><label>用户姓名</label></td>
-    <td width="350px"><input id="3" type="text" name="username" placeholder="请输入用户姓名"></td>
+    <td><label>用户名</label></td>
+    <td width="350px"><input id="3" type="text" name="username" placeholder="请输入用户名"></td>
     </tr>
     <tr>
-    <td><label>手机号</label></td>
-    <td width="350px"><input id="4" type="text" name="phone" placeholder="请输入手机号"></td>
+    <td><label>邮箱</label></td>
+    <td width="350px"><input id="4" type="text" name="phone" placeholder="请输入邮箱"></td>
     </tr>
     </table>
     <input class="button" type="submit" value="提交">

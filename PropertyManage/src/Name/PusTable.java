@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package Name;
 
@@ -11,23 +11,29 @@ import java.sql.Date;
  */
 public class PusTable {
 
-	private int userid;//ÓÃ»§×Ô¶¯Éú³ÉµÄid
-	private int propertyid;//×Ê²úid
-	private String account;//ÓÃ»§ÕËºÅÃû
-	private String password;//ÓÃ»§ÃÜÂë
-	private String phone;//ÓÃ»§µç»°
-	private String username;//ÓÃ»§ĞÕÃû
-	private int id;  //ÆóÒµ×Ê²úÀà±ğµÄid
-	private String propertyname;//ÆóÒµ×Ê²úÃû³Æ
-	private String brand;//×Ê²úÆ·ÅÆ
-	private String modelnumber;//×Ê²úĞÍºÅ
-	private String specification;//×Ê²ú¹æ¸ñ
-	private String status;//×´Ì¬£¬±íÊ¾µ±Ç°ÊÂÎïµÄ×´Ì¬
-	private Date buydate; //×Ê²ú²É¹ºÈÕÆÚ
-	private Date date;//µ±Ç°ÊÂÎïÉú³ÉÈÕÆÚ
+	private int userid;//ç”¨æˆ·è‡ªåŠ¨ç”Ÿæˆçš„id
+	private int propertyid;//èµ„äº§id
+	private String account;//ç”¨æˆ·è´¦å·å
+	private String email;//ç”¨æˆ·é‚®ç®±
+	private String username;//ç”¨æˆ·å§“å
+	private int id;  //ä¼ä¸šèµ„äº§ç±»åˆ«çš„id
+	private String propertyname;//ä¼ä¸šèµ„äº§åç§°
+	private String brand;//èµ„äº§å“ç‰Œ
+	private String modelnumber;//èµ„äº§å‹å·
+	private String specification;//èµ„äº§è§„æ ¼
+	private String status;//çŠ¶æ€ï¼Œè¡¨ç¤ºå½“å‰äº‹ç‰©çš„çŠ¶æ€
+	private int rank;
+	private Date buydate; //èµ„äº§é‡‡è´­æ—¥æœŸ
+	private Date date;//å½“å‰äº‹ç‰©ç”Ÿæˆæ—¥æœŸ
 	/**
-	 * 
+	 *
 	 */
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 	public PusTable() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,29 +74,15 @@ public class PusTable {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
+
+	public String getEmail() {
+		return email;
 	}
 	/**
-	 * @param password the password to set
+	 * @param email the email to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * @return the phone
-	 */
-	public String getPhone() {
-		return phone;
-	}
-	/**
-	 * @param phone the phone to set
-	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * @return the username
@@ -200,9 +192,9 @@ public class PusTable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
-	
+
+
+
+
 
 }

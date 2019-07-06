@@ -49,14 +49,14 @@ public class ChangeUserInformation extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		String userid = request.getParameter("userid");
 		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 		int ID = Integer.parseInt(userid);
 		user = userDAO.selectByUserid(ID);
 		user.setPassword(password);
-		user.setPhone(phone);
+		user.setEmail(email);
 		user.setUsername(username);
-		flag = userDAO.update(user.getId(),user.getAccount(), user.getPassword(), user.getPhone(), user.getUsername(), user.getUsercontrol());
+		flag = userDAO.update(user.getId(),user.getAccount(), user.getPassword(), user.getEmail(),user.getRank(), user.getUsername(), user.getUsercontrol());
 		if(flag == 1) {
 			out.print("<script>alert('更改成功');window.location='allUserServlet';</script>");
 		}else {

@@ -1,17 +1,21 @@
 package AdminServlet;
 
-import java.io.IOException;
-//import java.sql.SQLException;
+import Model.PropertyDAO;
+import Model.PusDAO;
+import Model.UserDAO;
+import Name.PropertyTable;
+import Name.Pus;
+import Name.PusTable;
+import Name.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Model.*;
-import Name.*;
-
+import java.io.IOException;
 import java.util.ArrayList;
+
+//import java.sql.SQLException;
 /**
  * Servlet implementation class ShenheServlet
  */
@@ -25,41 +29,40 @@ public class ShenheServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
- /*
-      * ´ÓÊı¾İ¿âÖĞ²éÑ¯ËùÓĞ´ıÉóºËµÄ¶©µ¥²¢½«Æä·µ»Ø¡£
-     * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-     */
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-    			throws ServletException, IOException {
-    	
-        response.setContentType("text/html; charset=UTF-8");
-    	request.setCharacterEncoding("utf-8");
-    	 
-    	ArrayList<Pus> puslist = new ArrayList<Pus>();
-        ArrayList<PusTable> pustablelist = new  ArrayList<PusTable>();
-    	try {
-    		PusDAO pus = new PusDAO();
-    		//»ñÈ¡pus±íÖĞ´ıÉóºËµÄÁĞ±í¡£
-    		puslist=pus.selectByStatus("´ıÉóºË");
-    		for(Pus p:puslist ) {
-    			PusTable pustable=new PusTable();
-    			User user = new User();
-    			PropertyTable property = new PropertyTable();
-    			int userid=p.getUserid();
-    			System.out.println(userid);
-    			int propertyid=p.getPropertyid();
-    			PropertyDAO propertyDAO=new PropertyDAO();
-    			UserDAO userDAO=new UserDAO();
-    			//¸ù¾İ·µ»ØµÄpusÖĞµÄuseridÔÚuser±íÖĞ²éÑ¯¸ÃuserµÄ¾ßÌåĞÅÏ¢¡£
-    			user=userDAO.selectByUserid(userid);
-    			//¸ù¾İ·µ»ØµÄpusÖĞµÄpropertyidÔÚpropertyname±íÓëpropertyitem±íÖĞ²éÑ¯¸Ã×Ê²úµÄ¾ßÌåĞÅÏ¢¡£
-    			property=propertyDAO.searchByPid(propertyid);
-    			//½«»ñÈ¡µÄuserĞÅÏ¢ÓëpropertyĞÅÏ¢ÕûºÏµ½pusTableÖĞ¡£
+
+	/*
+	 *ä»æ•°æ®åº“ä¸­æŸ¥è¯¢æ‰€æœ‰å¾…å®¡æ ¸çš„è®¢å•å¹¶å°†å…¶è¿”å›ã€‚
+	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("textml; charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+
+		ArrayList<Pus> puslist = new ArrayList<Pus>();
+		ArrayList<PusTable> pustablelist = new  ArrayList<PusTable>();
+		try {
+			PusDAO pus = new PusDAO();
+			//è·å–pusè¡¨ä¸­å¾…å®¡æ ¸çš„åˆ—è¡¨ã€‚
+			puslist=pus.selectByStatus("å¾…å®¡æ ¸");
+			for(Pus p:puslist ) {
+				PusTable pustable=new PusTable();
+				User user = new User();
+				PropertyTable property = new PropertyTable();
+				int userid=p.getUserid();
+				System.out.println(userid);
+				int propertyid=p.getPropertyid();
+				PropertyDAO propertyDAO=new PropertyDAO();
+				UserDAO userDAO=new UserDAO();
+				//æ ¹æ®è¿”å›çš„pusä¸­çš„useridåœ¨userè¡¨ä¸­æŸ¥è¯¢è¯¥userçš„å…·ä½“ä¿¡æ¯ã€‚
+				user=userDAO.selectByUserid(userid);
+				//æ ¹æ®è¿”å›çš„pusä¸­çš„propertyidåœ¨propertynameè¡¨ä¸propertyitemè¡¨ä¸­æŸ¥è¯¢è¯¥èµ„äº§çš„å…·ä½“ä¿¡æ¯ã€‚
+				property=propertyDAO.searchByPid(propertyid);
+				//å°†è·å–çš„userä¿¡æ¯ä¸propertyä¿¡æ¯æ•´åˆåˆ°pusTableä¸­ã€‚
     			pustable.setUserid(userid);
     			pustable.setAccount(user.getAccount());
-    			pustable.setPassword(user.getPassword());
-    			pustable.setPhone(user.getPhone());
+    			pustable.setEmail(user.getEmail());
     			pustable.setUsername(user.getUsername());
     			pustable.setId(property.getId());
     			pustable.setPropertyid(property.getPid());
@@ -69,6 +72,7 @@ public class ShenheServlet extends HttpServlet {
     			pustable.setSpecification(property.getSpecification());
     			pustable.setBuydate(property.getDate());
     			pustable.setDate(p.getDate());
+    			pustable.setRank(user.getRank());
     			pustable.setStatus(p.getStatus());
     			pustablelist.add(pustable);
     		}

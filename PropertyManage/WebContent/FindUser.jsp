@@ -142,7 +142,7 @@ table.style td {
     	<th>账号状态</th>
     	<th>密码</th>
     	<th>用户姓名</th>
-    	<th>手机号码</th>
+    	<th>邮箱</th>
     	<th>修改信息</th>
     	<th>初始化密码</th>
     	<th>删除用户</th>
@@ -155,7 +155,7 @@ table.style td {
     	<th> ${property.status}</th>
     	<th> ${property.password}</th>
     	<th> ${property.username}</th>
-  		<th> ${property.phone}</th>
+  		<th> ${property.email}</th>
     	<th> <a href="UserInformation?id=${property.id}">修改信息</a></th>
     	<th> <a href="UserPasswordReset?id=${property.id}">初始化密码</a></th>
     	<th> <a href="deleteServlet?id=${property.id}">删除用户</a></th>

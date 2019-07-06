@@ -50,10 +50,10 @@ public class AddAdmin extends HttpServlet {
 		try {
 			judge = a.AddAdmin(account,password,phone,name);
 			if(judge==false) {
-				out.print("<script>alert('Ìí¼ÓÊ§°Ü£¡');window.location='AddAdmin.jsp';</script>");
+				out.print("<script>alert('æ·»åŠ å¤±è´¥ï¼');window.location='AddAdmin.jsp';</script>");
 			}
 			else {
-				out.print("<script>alert('Ìí¼Ó³É¹¦£¡');window.location='AddAdmin.jsp';</script>");
+				out.print("<script>alert('æ·»åŠ æˆåŠŸï¼');window.location='AddAdmin.jsp';</script>");
 			}
 			
 		} catch (SQLException e) {

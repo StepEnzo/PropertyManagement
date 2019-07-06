@@ -19,11 +19,11 @@ import Name.PropertyTable;
 public class PropertyDAO {
 
 	
-/*
- * @author gzc
- * @param pid ²úÆ·µÄpid
- * @return 	PropertyTable ¸Ãpid²úÆ·µÄĞÅÏ¢¡£
- */
+	/*
+	 * @author gzc
+	 * @param pid äº§å“çš„pid
+	 * @return 	PropertyTable è¯¥pidäº§å“çš„ä¿¡æ¯ã€‚
+	 */
 	public PropertyTable searchByPid(int pid) {
 		Connection conn = null;
 		PropertyTable property = new PropertyTable();
@@ -76,7 +76,7 @@ public class PropertyDAO {
 	
 	/*
 	 * @author zzwj
-	 * Í¨¹ı×Ê²úÀà±ğid²éÑ¯¾ßÌå×Ê²ú
+	 * é€šè¿‡èµ„äº§ç±»åˆ«idæŸ¥è¯¢å…·ä½“èµ„äº§
 	 * @param propertyname.id
 	 * @return List<PropertyTable>
 	 */
@@ -121,7 +121,7 @@ public class PropertyDAO {
 	
 	/*
 	 * @author zzwj
-	 * Í¨¹ı×Ê²ú×´Ì¬²éÑ¯×Ê²ú
+	 * é€šè¿‡èµ„äº§çŠ¶æ€æŸ¥è¯¢èµ„äº§
 	 * @param propertyitem.status
 	 * @return List<PropertyTable>
 	 */
@@ -162,7 +162,7 @@ public class PropertyDAO {
 	}
 	
 	/*
-	 * ·µ»ØËùÓĞ×Ê²úÀà±ğµÄ¾ßÌåĞÅÏ¢	 * 
+	 * è¿”å›æ‰€æœ‰èµ„äº§ç±»åˆ«çš„å…·ä½“ä¿¡æ¯	 * 
 	 * @return List<PusTable>
 	 */
 	public List<PropertyNameTable> allInfo(){
@@ -203,7 +203,7 @@ public class PropertyDAO {
 	
 	public boolean addProperty(String propertyname,String brand,String modelnumber,String specification,Date date) throws SQLException {
 		boolean flag = false ;
-		String status = "¿ÉÓÃ";
+		String status = "å¯ç”¨";
 		int id = -1; 
 		Connection conn = null;
 			
@@ -238,7 +238,7 @@ public class PropertyDAO {
 			int result=pstmt.executeUpdate();
 			
 			if(result!=1){
-				System.out.println("²åÈëpropertynameÊ§°Ü");
+				System.out.println("æ’å…¥propertynameå¤±è´¥");
 				return false;
 			}else {
 				
@@ -260,7 +260,7 @@ public class PropertyDAO {
 		prestmt.setDate(3, date);
 		int resultitem=prestmt.executeUpdate();
 		if(resultitem!=1){
-			System.out.println("²åÈëpropertyitemÊ§°Ü");
+			System.out.println("æ’å…¥propertyitemå¤±è´¥");
 			
 			return false;
 		}else {
@@ -316,15 +316,15 @@ public class PropertyDAO {
 	
 	/*
 	 * @author gzc
-	 * @param StringÀàĞÍËÑË÷ÄÚÈİ
-	 * @return ArrayList<PropertyTable> Propertyname±íÖĞµÄpropertyname£¬brand£¬modelnumber£¬specificationÊôĞÔÓëËÑË÷ÄÚÈİÀàËÆµÄ±í¼¯ºÏ¡£
+	 * @param Stringç±»å‹æœç´¢å†…å®¹
+	 * @return ArrayList<PropertyTable> Propertynameè¡¨ä¸­çš„propertynameï¼Œbrandï¼Œmodelnumberï¼Œspecificationå±æ€§ä¸æœç´¢å†…å®¹ç±»ä¼¼çš„è¡¨é›†åˆã€‚
 	 */
 	public ArrayList<PropertyTable> searchProperty(String search) {
 		Connection conn = null;
 		ArrayList<PropertyTable> propertylist = new ArrayList<PropertyTable>();
 		try {
 			conn = Mysql.getCon();
-			//´ÓpropertynameÖĞ²éÑ¯ÓëËÑË÷ÄÚÈİÏàËÆµÄ½á¹û
+			//ä»propertynameä¸­æŸ¥è¯¢ä¸æœç´¢å†…å®¹ç›¸ä¼¼çš„ç»“æœ
 			//PreparedStatement psm = null;
 			ResultSet rs = null;
 //			String sql="select id,propertyname,brand,modelnumber,specification from propertyname where namecol = 1 and (propertyname like '%?%' or brand like '%?%' or modelnumber like '%?%' or specification like '%?%' )"; 
@@ -342,7 +342,7 @@ public class PropertyDAO {
 				String brand=rs.getString(3);
 				String modelnumber=rs.getString(4);
 				String specification=rs.getString(5);
-				//ÓÉÏÈÇ°²éÑ¯µ½µÄpropertyµÄid´Ópropertyitem±íÖĞ²éÑ¯Ïà¹ØÊı¾İ¡£
+				//ç”±å…ˆå‰æŸ¥è¯¢åˆ°çš„propertyçš„idä»propertyitemè¡¨ä¸­æŸ¥è¯¢ç›¸å…³æ•°æ®ã€‚
 				ResultSet rs1 = null;
 				Statement stmt = conn.createStatement();
 				String sql1 = "select pid,status,date from propertyitem where itemcol = 1 and id ="+id;
