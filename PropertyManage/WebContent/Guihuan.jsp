@@ -127,7 +127,7 @@ table.style td {
     <th>购买日期</th>
     <th>用户名</th>
     <th>账号</th>
-    <th>电话号码</th>
+    <th>邮箱</th>
     <th>领取日期</th>
     <th>归还</th>
     </tr>
@@ -140,7 +140,7 @@ table.style td {
     <th> ${guihuan.buydate}</th>
     <th> ${guihuan.username}</th>
     <th> ${guihuan.account}</th>
-    <th> ${guihuan.phone}</th>
+    <th> ${guihuan.email}</th>
     <th> ${guihuan.date}</th>
     <th> <a href="guiHuan?userid=${guihuan.userid }&pid=${guihuan.propertyid }">归还</a></th>
    </c:forEach>

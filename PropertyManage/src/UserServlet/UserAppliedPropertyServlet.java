@@ -66,8 +66,7 @@ public class UserAppliedPropertyServlet extends HttpServlet {
 			//将获取的user信息与property信息整合到pusTable中。
 			pustable.setUserid(userid);
 			pustable.setAccount(user.getAccount());
-			pustable.setPassword(user.getPassword());
-			pustable.setPhone(user.getPhone());
+			pustable.setEmail(user.getEmail());
 			pustable.setUsername(user.getUsername());
 			pustable.setId(property.getId());
 			pustable.setPropertyid(property.getPid());

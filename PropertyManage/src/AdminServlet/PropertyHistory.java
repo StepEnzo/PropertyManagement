@@ -52,7 +52,7 @@ public class PropertyHistory extends HttpServlet {
 				pus = pusDAO.selectByPropertyid(pid);
 				if(pus.isEmpty()) {
 					PrintWriter out = response.getWriter();
-					out.println("<script language='javascript'>alert('¸Ã×Ê²úÎŞ³ö½èÀúÊ·')</script>");
+					out.println("<script language='javascript'>alert('è¯¥èµ„äº§æ— å‡ºå€Ÿå†å²')</script>");
 					out.println("<script language='javascript'>window.location.href='FindProperty.jsp'</script>");
 				}
 				else {
@@ -68,7 +68,7 @@ public class PropertyHistory extends HttpServlet {
 					
 					
 					pTable.setUsername(user.getUsername());
-					pTable.setPhone(user.getPhone());
+					pTable.setEmail(user.getEmail());
 					pTable.setPropertyname(property.getPropertyname());
 					
 					pTable.setPropertyid(pid);

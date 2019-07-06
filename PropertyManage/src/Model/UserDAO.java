@@ -1,94 +1,92 @@
 /**
- * 
+ *
  */
 package Model;
 
-import java.sql.Connection;
-//import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-//import java.util.ArrayList;
+import Name.User;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//import java.sql.Date;
+//import java.util.ArrayList;
 //import Name.Pus;
 //import Name.Pus;
-import Name.User;
 
 /**
  * @author gzc
  *
  */
 public class UserDAO {
-	
-	
-	
+
+
+
 	public static UserDAO getInstance() {
 		return new UserDAO();
 	}
 
-	
+
 	/*
-	 * Õ®π˝ ‰»Îµƒ”√ªßid¥”user±Ì÷–≤È—Ø”Î∆‰œ‡πÿµƒ ˝æ›°£
-	 * @param ”√ªßid£¨int
-	 * @return user¿‡µƒ¡–±Ì
+	 * ÈÄöËøáËæìÂÖ•ÁöÑÁî®Êà∑id‰ªéuserË°®‰∏≠Êü•ËØ¢‰∏éÂÖ∂Áõ∏ÂÖ≥ÁöÑÊï∞ÊçÆ„ÄÇ
+	 * @param Áî®Êà∑idÔºåint
+	 * @return userÁ±ªÁöÑÂàóË°®
 	 */
 	public User selectByUserid(int id) {
 		Connection conn = null;
 		User user = new User();
 		try {
-			
+
 			conn = Mysql.getCon();
 			Statement stmt = conn.createStatement();
-			String sql="select account,password,phone,username,usercontrol from user where id = "+id; 
+			String sql="select account,`password`,email,`rank`,username,usercontrol from user where user.id = "+id;
 			ResultSet rs=stmt.executeQuery(sql);
 			if (rs.next()) {
 				user.setId(id);
 				user.setAccount(rs.getString("account"));
 				user.setPassword(rs.getString("password"));
-				user.setPhone(rs.getString("phone"));
+				user.setEmail(rs.getString("email"));
 				user.setUsername(rs.getString("username"));
+				user.setRank(rs.getInt("rank"));
 				user.setUsercontrol(rs.getInt("usercontrol"));
 			}
 			return user;
-	}catch (SQLException s) {
-		System.out.println(s);	
-		return null;
-	}
+		}catch (SQLException s) {
+			System.out.println(s);
+			return null;
+		}
 		finally {
 			if (conn != null) {
-				try {					
-					conn.close();					
-				} catch (SQLException ignore) {					
+				try {
+					conn.close();
+				} catch (SQLException ignore) {
 				}
 			}
 		}
 	}
-	
+
 	public int selectidByAccount(String account) {
 		Connection conn = null;
 		int id;
 		try {
-			
+
 			conn = Mysql.getCon();
 			Statement stmt = conn.createStatement();
-			String sql="select id from user where account = '"+account+"'"; 
+			String sql="select id from user where account = '"+account+"'";
 			ResultSet rs=stmt.executeQuery(sql);
 			if(rs.next())
 				id = rs.getInt("id");
 			else id=0;
 			return id;
-	}catch (SQLException s) {
-		System.out.println(s);	
-		return 0;
-	}
+		}catch (SQLException s) {
+			System.out.println(s);
+			return 0;
+		}
 		finally {
 			if (conn != null) {
-				try {					
-					conn.close();					
-				} catch (SQLException ignore) {					
+				try {
+					conn.close();
+				} catch (SQLException ignore) {
 				}
 			}
 		}
@@ -97,15 +95,15 @@ public class UserDAO {
 		List<User> users = new ArrayList<User>();
 		Connection c = null;
 		try {
-			
+
 			c = Mysql.getCon();
-			
+
 			String sql = "select * from user order by question_id desc limit ?,? ";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, start);
 			ps.setInt(2, count);
-			
+
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -113,34 +111,36 @@ public class UserDAO {
 				int id=rs.getInt("id");
 				String account = rs.getString("account");
 				String password = rs.getString("password");
-				String phone = rs.getString("phone");
+				String email = rs.getString("email");
 				String username = rs.getString("username");
+				int rank=rs.getInt("rank");
 				int usercontrol = rs.getInt("usercontrol");
 
 
 				user.setId(id);
 				user.setAccount(account);
 				user.setPassword(password);
-				user.setPhone(phone);
+				user.setEmail(email);
 				user.setUsername(username);
+				user.setRank(rank);
 				user.setUsercontrol(usercontrol);
 				users.add(user);
 			}
 			return users;
 		} catch (SQLException e) {
-			System.out.println(e);	
+			System.out.println(e);
 			return null;
 		}
 		finally {
 			if (c != null) {
-				try {					
-					c.close();					
-				} catch (SQLException ignore) {					
+				try {
+					c.close();
+				} catch (SQLException ignore) {
 				}
 			}
 		}
 	}
-	
+
 	public int getTotal() {
 		int total = 0;
 		Connection c = null;
@@ -164,314 +164,319 @@ public class UserDAO {
 		}
 		finally {
 			if (c != null) {
-				try {					
-					c.close();					
-				} catch (SQLException ignore) {					
+				try {
+					c.close();
+				} catch (SQLException ignore) {
 				}
 			}
 		}
 	}
-	
-	public int add(String account,String password,String phone,String username){
+
+	public int add(String username,String account,String password,String email){
 		Connection a = null;
 		try{
-		a = Mysql.getCon();
-		Statement s = a.createStatement();
-		String sql = "select * from user where account = '"+account+"'";
-		
-		ResultSet rs = s.executeQuery(sql);
-		if(!rs.next())
-		{
-			String sql1 = "insert into user(account,password,phone,username) values(?,?,?,?)";
-			PreparedStatement ps1 = a.prepareStatement(sql1);
-			ps1.setString(1,account);
-			ps1.setString(2,password);
-			ps1.setString(3,phone);
-			ps1.setString(4,username);
-			
-			
-			int flag = ps1.executeUpdate();
-			if (flag > 0) {
-				System.out.print("1");
-				return 1; //≥…π¶
-			}
-			else			
+			a = Mysql.getCon();
+			Statement s = a.createStatement();
+			String sql = "select * from user where account = '"+account+"'";
+
+			ResultSet rs = s.executeQuery(sql);
+			if(!rs.next())
 			{
-				System.out.print("-2");
-				return 0;//≤Â»Î ß∞‹
+				String sql1 = "insert into user(username,account,password,email) values(?,?,?,?)";
+				PreparedStatement ps1 = a.prepareStatement(sql1);
+				ps1.setString(1,username);
+				ps1.setString(2,account);
+				ps1.setString(3,password);
+				ps1.setString(4,email);
+
+
+				int flag = ps1.executeUpdate();
+				if (flag > 0) {
+					System.out.print("1");
+					return 1; //ÊàêÂäü
+				}
+				else
+				{
+					System.out.print("-2");
+					return 0;//ÊèíÂÖ•Â§±Ë¥•
+				}
 			}
-		}
-		else return -2;//”√ªß√˚÷ÿ∏¥
+			else return -2;//Áî®Êà∑ÂêçÈáçÂ§ç
 		}
 		catch(SQLException e) {
 			System.out.println(e);
 			return 0;
 		}finally {
 			if (a != null) {
-				try {					
-					a.close();					
-				} catch (SQLException ignore) {					
+				try {
+					a.close();
+				} catch (SQLException ignore) {
 				}
 			}
 		}
 	}
-	
-public int logIn(String account,String password) {
-	int type;
-	Connection c = null;
-	try {
-		
-		String passwd=" ";
-		c = Mysql.getCon();
 
-		Statement s = c.createStatement();
+	public int logIn(String account,String password) {
+		int type;
+		Connection c = null;
+		try {
 
-		String sql = "select * from user where account = '" + account + "'";
+			String passwd=" ";
+			c = Mysql.getCon();
 
-		ResultSet rs = s.executeQuery(sql);
-		
-		if(rs.next()) {
-			passwd = rs.getString("password");	
-			type=rs.getInt("usercontrol");
-			
-		
+			Statement s = c.createStatement();
+
+			String sql = "select * from user where account = '" + account + "'";
+
+			ResultSet rs = s.executeQuery(sql);
+
+			if(rs.next()) {
+				passwd = rs.getString("password");
+				type=rs.getInt("usercontrol");
+
+
 //		System.out.println(acc);
-			if(type == 0)
-				return 0;
-			else {
-		if(passwd.equals(password)) 
-			return type;
-		else return -2;
-	}
-		}
-		else return 0;
-	}
-	catch(SQLException s) {
-		System.out.println(s);	
-		return -2;
-	}
-	finally {
-		if (c != null) {
-			try {					
-				c.close();					
-			} catch (SQLException ignore) {					
+				if(type == 0)
+					return 0;
+				else {
+					if(passwd.equals(password))
+						return type;
+					else return -2;
+				}
 			}
-		
+			else return 0;
 		}
-	
-}
-	
-}
+		catch(SQLException s) {
+			System.out.println(s);
+			return -2;
+		}
+		finally {
+			if (c != null) {
+				try {
+					c.close();
+				} catch (SQLException ignore) {
+				}
 
-public List<User> search(String search){
-	List<User> users = new ArrayList<User>();
-	Connection a =null;
-	try{
-		
-		a = Mysql.getCon();
-		String sql = "select * from user where (usercontrol = 1 or usercontrol = -1) and ( account like '%"+ search + "%' or password like '%"+ search + "%' or phone like '%"+ search + "%' or username like '%"+ search + "%')";
-		Statement ad = a.createStatement();
-		
+			}
+
+		}
+
+	}
+
+	public List<User> search(String search){
+		List<User> users = new ArrayList<User>();
+		Connection a =null;
+		try{
+
+			a = Mysql.getCon();
+			String sql = "select * from user where (usercontrol = 1 or usercontrol = -1) and ( account like '%"+ search + "%' or password like '%"+ search + "%' or email like '%"+ search + "%' or username like '%"+ search + "%')";
+			Statement ad = a.createStatement();
+
 		/*ad.setString(1,admin.getName());
 		ad.setString(2,admin.getAccount());*/
-		
 
-		ResultSet rs = ad.executeQuery(sql);
-		while (rs.next()) {
-			User user1 = new User();
-			int id=rs.getInt("id");
-			String account = rs.getString("account");
-			String password = rs.getString("password");
-			String phone = rs.getString("phone");
-			String username = rs.getString("username");
-			int usercol =rs.getInt("usercontrol");
-			user1.setId(id);
-			user1.setAccount(account);
-			user1.setPassword(password);
-			user1.setPhone(phone);
-			user1.setUsername(username);
-			user1.setUsercontrol(usercol);
-			if(usercol==1) {
-				user1.setStatus("’˝≥£");
+
+			ResultSet rs = ad.executeQuery(sql);
+			while (rs.next()) {
+				User user1 = new User();
+				int id=rs.getInt("id");
+				String account = rs.getString("account");
+				String password = rs.getString("password");
+				String email = rs.getString("email");
+				String username = rs.getString("username");
+				int rank=rs.getInt("rank");
+				int usercol =rs.getInt("usercontrol");
+				user1.setId(id);
+				user1.setAccount(account);
+				user1.setPassword(password);
+				user1.setEmail(email);
+				user1.setRank(rank);
+				user1.setUsername(username);
+				user1.setUsercontrol(usercol);
+				if(usercol==1) {
+					user1.setStatus("Ê≠£Â∏∏");
+				}
+				if(usercol==-1) {
+					user1.setStatus("Ë¢´ÂÜªÁªì");
+				}
+				users.add(user1);
 			}
-			if(usercol==-1) {
-				user1.setStatus("±ª∂≥Ω·");
-			}
-			users.add(user1);
+			return users;
+
 		}
-		return users;
-		
-}
-	catch(SQLException s) {
-		System.out.println(s);	
-		return null;
+		catch(SQLException s) {
+			System.out.println(s);
+			return null;
+		}
+		finally {
+			if (a != null) {
+				try {
+					a.close();
+				} catch (SQLException ignore) {
+				}
+
+			}
+
+		}
 	}
-	finally {
-		if (a != null) {
-			try {					
-				a.close();					
-			} catch (SQLException ignore) {					
-			}
-		
-		}
-	
-}
-}
 
-public List<User> searchall(){
-	List<User> users = new ArrayList<User>();
-	Connection a =null;
-	try{
-		
-		a = Mysql.getCon();
-		String sql = "select * from user where usercontrol = 1 or usercontrol = -1";
-		Statement ad = a.createStatement();
-		
+	public List<User> searchall(){
+		List<User> users = new ArrayList<User>();
+		Connection a =null;
+		try{
+
+			a = Mysql.getCon();
+			String sql = "select * from user where usercontrol = 1 or usercontrol = -1";
+			Statement ad = a.createStatement();
+
 		/*ad.setString(1,admin.getName());
 		ad.setString(2,admin.getAccount());*/
-		
 
-		ResultSet rs = ad.executeQuery(sql);
-		while (rs.next()) {
-			User user1 = new User();
-			int id=rs.getInt("id");
-			String account = rs.getString("account");
-			String password = rs.getString("password");
-			String phone = rs.getString("phone");
-			String username = rs.getString("username");
-			int usercol =rs.getInt("usercontrol");
-			user1.setId(id);
-			user1.setAccount(account);
-			user1.setPassword(password);
-			user1.setPhone(phone);
-			user1.setUsername(username);
-			user1.setUsercontrol(usercol);
-			if(usercol==1) {
-				user1.setStatus("’˝≥£");
+
+			ResultSet rs = ad.executeQuery(sql);
+			while (rs.next()) {
+				User user1 = new User();
+				int id=rs.getInt("id");
+				String account = rs.getString("account");
+				String password = rs.getString("password");
+				String email = rs.getString("email");
+				String username = rs.getString("username");
+				int rank=rs.getInt("rank");
+				int usercol =rs.getInt("usercontrol");
+				user1.setId(id);
+				user1.setAccount(account);
+				user1.setPassword(password);
+				user1.setEmail(email);
+				user1.setRank(rank);
+				user1.setUsername(username);
+				user1.setUsercontrol(usercol);
+				if(usercol==1) {
+					user1.setStatus("Ê≠£Â∏∏");
+				}
+				if(usercol==-1) {
+					user1.setStatus("Ë¢´ÂÜªÁªì");
+				}
+				users.add(user1);
 			}
-			if(usercol==-1) {
-				user1.setStatus("±ª∂≥Ω·");
-			}
-			users.add(user1);
+			return users;
+
 		}
-		return users;
-		
-}
-	catch(SQLException s) {
-		System.out.println(s);	
-		return null;
-	}
-	finally {
-		if (a != null) {
-			try {					
-				a.close();					
-			} catch (SQLException ignore) {					
-			}
-		
+		catch(SQLException s) {
+			System.out.println(s);
+			return null;
 		}
-	
-}
-}
+		finally {
+			if (a != null) {
+				try {
+					a.close();
+				} catch (SQLException ignore) {
+				}
 
-public int update(int id,String account,String password,String phone,String username,int usercontrol) {
-	Connection c=null;
-	try {
-
-		 c = Mysql.getCon();
-
-		String sql = "update user set account = ?, password = ?, phone = ?,username = ?, usercontrol = ? where id = ?";
-		PreparedStatement ps = c.prepareStatement(sql);
-		
-		
-		ps.setString(1, account);
-
-		ps.setString(2, password);
-		
-		ps.setString(3, phone);
-		ps.setString(4, username);
-		ps.setInt(5, usercontrol);
-		ps.setInt(6, id);
-
-		int flag = ps.executeUpdate();
-		
-		return flag;
-
-	} catch (SQLException s) {
-		System.out.println(s);	
-		return 0;
-	}finally {
-		if (c != null) {
-			try {					
-				c.close();					
-			} catch (SQLException ignore) {					
 			}
-		
-		}
-	
-}
-}
 
-public int update1(int id) {
-	Connection c =null;
-	try {
-		c = Mysql.getCon();
-
-		String sql = "update user set password = ? where id = ?";
-		PreparedStatement ps = c.prepareStatement(sql);
-		
-		ps.setString(1,"123456");
-		ps.setInt(2, id);
-		
-
-		int flag = ps.executeUpdate();
-		return flag;
-
-	} catch (SQLException s) {
-		System.out.println(s);	
-		return 0;
-	}finally {
-		if (c != null) {
-			try {					
-				c.close();					
-			} catch (SQLException ignore) {					
-			}
-		
-		}
-	
-}
-
-}
-
-/*
- * @author gzc
- * @param ”√ªßid id
- * @param –Ë“™∏ƒ±‰µƒ◊¥Ã¨ col£®0£∫…æ≥˝£ª-1£∫À¯∂®£©
- * @return boolean÷µ true±Ì æ∏¸–¬≥…π¶£¨false±Ì æ∏¸–¬ ß∞‹
- */
-public boolean deleteById(int id,int col) {
-	Connection conn = null;
-	boolean f;
-	try {
-		conn = Mysql.getCon();
-		Statement stmt = conn.createStatement();
-		String sql="update user set usercontrol = "+col+" where id="+id; 
-		int i=stmt.executeUpdate(sql);
-		if(i!=1) f=false;
-		else f=true;
-		return f;
-}catch (SQLException s) {
-	System.out.println(s);	
-	return false;
-}
-	finally {
-		if (conn != null) {
-			try {					
-				conn.close();					
-			} catch (SQLException ignore) {					
-			}
 		}
 	}
-}
+
+	public int update(int id,String account,String password,String email,int rank,String username,int usercontrol) {
+		Connection c=null;
+		try {
+
+			c = Mysql.getCon();
+
+			String sql = "update user set account = ?, password = ?, email = ?,username = ?,rank=?, usercontrol = ? where id = ?";
+			PreparedStatement ps = c.prepareStatement(sql);
+
+
+			ps.setString(1, account);
+
+			ps.setString(2, password);
+
+			ps.setString(3, email);
+			ps.setString(4, username);
+			ps.setInt(5, rank);
+			ps.setInt(6, usercontrol);
+			ps.setInt(7, id);
+
+			int flag = ps.executeUpdate();
+
+			return flag;
+
+		} catch (SQLException s) {
+			System.out.println(s);
+			return 0;
+		}finally {
+			if (c != null) {
+				try {
+					c.close();
+				} catch (SQLException ignore) {
+				}
+
+			}
+
+		}
+	}
+
+	public int update1(int id) {
+		Connection c =null;
+		try {
+			c = Mysql.getCon();
+
+			String sql = "update user set password = ? where id = ?";
+			PreparedStatement ps = c.prepareStatement(sql);
+
+			ps.setString(1,"123456");
+			ps.setInt(2, id);
+
+
+			int flag = ps.executeUpdate();
+			return flag;
+
+		} catch (SQLException s) {
+			System.out.println(s);
+			return 0;
+		}finally {
+			if (c != null) {
+				try {
+					c.close();
+				} catch (SQLException ignore) {
+				}
+
+			}
+
+		}
+
+	}
+
+	/*
+	 * @author gzc
+	 * @param Áî®Êà∑id id
+	 * @param ÈúÄË¶ÅÊîπÂèòÁöÑÁä∂ÊÄÅ colÔºà0ÔºöÂà†Èô§Ôºõ-1ÔºöÈîÅÂÆöÔºâ
+	 * @return booleanÂÄº trueË°®Á§∫Êõ¥Êñ∞ÊàêÂäüÔºåfalseË°®Á§∫Êõ¥Êñ∞Â§±Ë¥•
+	 */
+	public boolean deleteById(int id,int col) {
+		Connection conn = null;
+		boolean f;
+		try {
+			conn = Mysql.getCon();
+			Statement stmt = conn.createStatement();
+			String sql="update user set usercontrol = "+col+" where id="+id;
+			int i=stmt.executeUpdate(sql);
+			if(i!=1) f=false;
+			else f=true;
+			return f;
+		}catch (SQLException s) {
+			System.out.println(s);
+			return false;
+		}
+		finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+	}
 
 
 

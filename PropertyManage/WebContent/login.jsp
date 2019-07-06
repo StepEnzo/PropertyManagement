@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -11,7 +11,7 @@
 function checkForm(){
 	var id1=document.getElementById("1").value;
 	if (id1==null||id1==''){
-			alert("账户名不能为空！");
+			alert("账户不能为空！");
 			return false;
 	}
 	var id2=document.getElementById("2").value;
@@ -119,13 +119,14 @@ table.style th {
 	border-color: #999999;
 }
 table.style td {
-	background:#dcddc0;
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #999999;
+    background: #dcddc0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}
   </style>
-  <p align="right"><b><font color="blue"><a href="adminLogin.jsp">管理员入口</a></font></b></p>
+  <p align="right"><b><font color="blue"><a href="register.jsp">注册</a>&nbsp;<a href="adminLogin.jsp">管理员入口</a></font></b></p>
   <body>
 <div class="box">
     <form class="style" action="LogInServlet" method="post">
@@ -142,7 +143,7 @@ table.style td {
 
     </table>
     <input class="button" type="submit" value="登录">
-</form>    
+</form>
 </div>
   </body>
   </html>

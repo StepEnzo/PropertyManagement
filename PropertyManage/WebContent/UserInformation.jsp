@@ -132,7 +132,7 @@ function checkForm(){
 	}
 	var check4=document.getElementById("4").value;
 	if (check4==null||check3==''){
-			alert("电话号码不能为空！");
+			alert("邮箱不能为空！");
 			return false;
 	}
 	var check5=document.getElementById("5").value;

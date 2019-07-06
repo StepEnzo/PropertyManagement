@@ -34,7 +34,7 @@ public class UserSearchServlet extends HttpServlet {
 		List<User> users = userDAO.search(str);
 
 		if(users.isEmpty()) {
-			out.print("<script>alert('ÕÒ²»µ½Ïà¹ØÓÃ»§£¬Çë¼ì²é¹Ø¼ü´ÊÊÇ·ñÕıÈ·£¡');window.location='FindUser.jsp';</script>");
+			out.print("<script>alert('æ‰¾ä¸åˆ°ç›¸å…³ç”¨æˆ·ï¼Œè¯·æ£€æŸ¥å…³é”®è¯æ˜¯å¦æ­£ç¡®ï¼');window.location='FindUser.jsp';</script>");
 		}else {
 			session.setAttribute("users",users);
 			request.getRequestDispatcher("FindUser.jsp").forward(request, response);

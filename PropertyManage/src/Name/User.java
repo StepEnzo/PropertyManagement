@@ -13,9 +13,10 @@ public class User {
 	private int id;
 	private String account;
 	private String password;
-	private String phone;
+	private String email;
 	private String username;
 	private int usercontrol;
+	private int rank;
 	private String status;
 	/**
 	 * 
@@ -24,9 +25,19 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	/**
 	 * @return the id
 	 */
+
 	public int getId() {
 		return id;
 	}
@@ -63,14 +74,14 @@ public class User {
 	/**
 	 * @return the phone
 	 */
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
 	/**
-	 * @param phone the phone to set
+	 * @param email the phone to set
 	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * @return the username

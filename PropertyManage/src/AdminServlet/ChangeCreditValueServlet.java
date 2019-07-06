@@ -33,11 +33,11 @@ public class ChangeCreditValueServlet extends HttpServlet {
 		}
 		 if (flag == 1)
 		{
-			out.println("<script language='javascript'>alert('»Ö¸´³É¹¦')</script>");
+			out.println("<script language='javascript'>alert('æ¢å¤æˆåŠŸï¼')</script>");
 			out.println("<script language='javascript'>window.location.href='ShenheServlet'</script>");
 		}
 		else {
-			out.println("<script language='javascript'>alert('»Ö¸´Ê§°Ü')</script>");
+			out.println("<script language='javascript'>alert('æ¢å¤å¤±è´¥)</script>");
 			out.println("<script language='javascript'>window.location.href='ShenheServlet'</script>");
 		}
 	}

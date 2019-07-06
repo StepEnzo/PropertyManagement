@@ -339,4 +339,26 @@
     <url-pattern>/ChangeCreditValueServlet</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <description></description>
+    <display-name>register</display-name>
+    <servlet-name>register</servlet-name>
+    <servlet-class>UserServlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+     <display-name>sendEmail</display-name>
+    <servlet-name>sendEmail</servlet-name>
+    <servlet-class>AdminServlet.SendEmailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sendEmail</servlet-name>
+    <url-pattern>/sendEmail</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -42,10 +42,10 @@ public class DeleteAdmin extends HttpServlet {
 		try {
 			judge = a.DeleteAdmin(id);
 			if(judge==false) {
-				out.print("<script>alert('É¾³ıÊ§°Ü£¡');window.location='SearchAdmin.jsp';</script>");
+				out.print("<script>alert('åˆ é™¤å¤±è´¥ï¼');window.location='SearchAdmin.jsp';</script>");
 			}
 			else {
-				out.print("<script>alert('É¾³ı³É¹¦£¡');window.location='SearchAdmin.jsp';</script>");
+				out.print("<script>alert('åˆ é™¤æˆåŠŸï¼');window.location='SearchAdmin.jsp';</script>");
 			}
 			
 		} catch (SQLException e) {

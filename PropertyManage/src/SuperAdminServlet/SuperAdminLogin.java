@@ -48,7 +48,7 @@ public class SuperAdminLogin extends HttpServlet {
 		SuperAdminDAO superadminDAO = new SuperAdminDAO();
 		flag = superadminDAO.login(account, password);
 		if(flag == false) {
-			out.print("<script>alert('ÕËºÅ»òÃÜÂë´íÎó');window.location='SuperAdminLogin.jsp';</script>");
+			out.print("<script>alert('è´¦å·æˆ–å¯†ç é”™è¯¯');window.location='SuperAdminLogin.jsp';</script>");
 		}else {
 			request.getRequestDispatcher("SearchAdmin.jsp").forward(request, response);
 		}

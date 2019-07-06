@@ -43,19 +43,19 @@ public class lockServlet extends HttpServlet {
     	if(col==1) {
     		boolean f1 = userDAO.deleteById(id, -1);
     		if(f1==false) {
-        		out.print("<script>alert('操作失败，请重试');window.location='allUserServlet';</script>");
+        		out.print("<script>alert('鎿嶄綔澶辫触锛岃閲嶈瘯');window.location='allUserServlet';</script>");
     		}
     		else {
-        		out.print("<script>alert('锁定成功');window.location='allUserServlet';</script>");
+        		out.print("<script>alert('閿佸畾鎴愬姛');window.location='allUserServlet';</script>");
     		}
     	}
     	else {
     		boolean f2 = userDAO.deleteById(id, 1);
     		if(f2==false) {
-        		out.print("<script>alert('操作失败，请重试');window.location='allUserServlet';</script>");
+        		out.print("<script>alert('鎿嶄綔澶辫触锛岃閲嶈瘯');window.location='allUserServlet';</script>");
     		}
     		else {
-        		out.print("<script>alert('解锁成功');window.location='allUserServlet';</script>");
+        		out.print("<script>alert('瑙ｉ攣鎴愬姛');window.location='allUserServlet';</script>");
     		}
     	}
     		

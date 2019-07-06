@@ -57,10 +57,10 @@ public class UpdateAdmin extends HttpServlet {
 		try {
 			judge = a.UpdateAdmin(admin);
 			if(judge==false) {
-				out.print("<script>alert('¸üĞÂÊ§°Ü£¡');window.location='SearchAdmin.jsp';</script>");
+				out.print("<script>alert('æ›´æ–°å¤±è´¥ï¼');window.location='SearchAdmin.jsp';</script>");
 			}
 			else {
-				out.print("<script>alert('¸üĞÂ³É¹¦£¡');window.location='SearchAdmin.jsp';</script>");
+				out.print("<script>alert('æ›´æ–°æˆåŠŸï¼');window.location='SearchAdmin.jsp';</script>");
 			}
 			
 		} catch (SQLException e) {

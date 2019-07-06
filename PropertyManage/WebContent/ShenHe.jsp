@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -127,10 +127,12 @@ table.style td {
     <th>购买日期</th>
     <th>用户名</th>
     <th>账号</th>
-    <th>电话号码</th>
+    <th>邮箱</th>
     <th>申请日期</th>
+    <th>信用</th>
     <th>批准</th>
     <th>拒绝</th>
+        <th>通知</th>
     </tr>
    <c:forEach var="shenhe" items = "${shenhe}" varStatus="ShenheNumber">
     <tr>
@@ -141,10 +143,12 @@ table.style td {
     <th> ${shenhe.buydate}</th>
     <th> ${shenhe.username}</th>
     <th> ${shenhe.account}</th>
-    <th> ${shenhe.phone}</th>
+    <th> ${shenhe.email}</th>
     <th> ${shenhe.date}</th>
+    <th>${shenhe.rank }</th>
     <th> <a href="yes?userid=${shenhe.userid }&pid=${shenhe.propertyid }">批准</a></th>
     <th> <a href="no?userid=${shenhe.userid }&pid=${shenhe.propertyid }">拒绝</a></th>
+        <th><a href="sendEmail?email=${shenhe.email}">发送邮件</a></th>
    </c:forEach>
     </table>
     

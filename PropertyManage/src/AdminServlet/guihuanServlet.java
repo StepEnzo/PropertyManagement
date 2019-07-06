@@ -43,8 +43,8 @@ public class guihuanServlet extends HttpServlet {
         ArrayList<PusTable> pustablelist = new  ArrayList<PusTable>();
     	try {
     		PusDAO pus = new PusDAO();
-    		//»ñÈ¡pus±íÖĞÒÑÁìÈ¡µÄÁĞ±í¡£
-    		puslist=pus.selectByStatus("ÒÑÁìÈ¡");
+    		//è·å–pusè¡¨ä¸­å·²é¢†å–çš„åˆ—è¡¨ã€‚
+    		puslist=pus.selectByStatus("å·²é¢†å–");
     		for(Pus p:puslist ) {
     			PusTable pustable=new PusTable();
     			User user = new User();
@@ -54,15 +54,14 @@ public class guihuanServlet extends HttpServlet {
     			int propertyid=p.getPropertyid();
     			PropertyDAO propertyDAO=new PropertyDAO();
     			UserDAO userDAO=new UserDAO();
-    			//¸ù¾İ·µ»ØµÄpusÖĞµÄuseridÔÚuser±íÖĞ²éÑ¯¸ÃuserµÄ¾ßÌåĞÅÏ¢¡£
+    			//æ ¹æ®è¿”å›çš„pusä¸­çš„useridåœ¨userè¡¨ä¸­æŸ¥è¯¢è¯¥userçš„å…·ä½“ä¿¡æ¯ã€‚
     			user=userDAO.selectByUserid(userid);
-    			//¸ù¾İ·µ»ØµÄpusÖĞµÄpropertyidÔÚpropertyname±íÓëpropertyitem±íÖĞ²éÑ¯¸Ã×Ê²úµÄ¾ßÌåĞÅÏ¢¡£
+    			//æ ¹æ®è¿”å›çš„pusä¸­çš„propertyidåœ¨propertynameè¡¨ä¸propertyitemè¡¨ä¸­æŸ¥è¯¢è¯¥èµ„äº§çš„å…·ä½“ä¿¡æ¯ã€‚
     			property=propertyDAO.searchByPid(propertyid);
-    			//½«»ñÈ¡µÄuserĞÅÏ¢ÓëpropertyĞÅÏ¢ÕûºÏµ½pusTableÖĞ¡£
+    			//å°†è·å–çš„userä¿¡æ¯ä¸propertyä¿¡æ¯æ•´åˆåˆ°pusTableä¸­ã€‚
     			pustable.setUserid(userid);
     			pustable.setAccount(user.getAccount());
-    			pustable.setPassword(user.getPassword());
-    			pustable.setPhone(user.getPhone());
+    			pustable.setEmail(user.getEmail());
     			pustable.setUsername(user.getUsername());
     			pustable.setId(property.getId());
     			pustable.setPropertyid(property.getPid());

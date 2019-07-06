@@ -45,7 +45,7 @@ public class allUserServlet extends HttpServlet {
 	List<User> users = userDAO.searchall();
 
 	if(users.isEmpty()) {
-		out.print("<script>alert('无用户，请确认！');window.location='FindUser.jsp';</script>");
+		out.print("<script>alert('鏃犵敤鎴凤紝璇风‘璁わ紒');window.location='FindUser.jsp';</script>");
 	}else {
 		session.setAttribute("users",users);
 		request.getRequestDispatcher("FindUser.jsp").forward(request, response);
