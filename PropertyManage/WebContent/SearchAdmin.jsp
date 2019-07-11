@@ -138,7 +138,7 @@ function checkForm(){
     	<th>ID</th>
     	<th>账号</th>
     	<th>密码</th>
-    	<th>电话号码</th>
+    	<th>email</th>
     	<th>姓名</th>
     	<th>修改</th>
     	<th>删除</th>
@@ -149,7 +149,7 @@ function checkForm(){
   	 	<th> ${Admin.id}</th>
     	<th> ${Admin.account}</th>
     	<th> ${Admin.password}</th>
-    	<th> ${Admin.phone}</th>
+    	<th> ${Admin.email}</th>
     	<th> ${Admin.name}</th>
     	<th> <a href="SearchbyId?id=${Admin.id}">修改</a></th>
 		<th> <a href="DeleteAdmin?id=${Admin.id}">删除</a></th>

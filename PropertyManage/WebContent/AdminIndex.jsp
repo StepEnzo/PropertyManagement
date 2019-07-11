@@ -70,6 +70,13 @@
             恢复信用值
         </button>
     </a>
+      <a href="DamageServlet">
+        <button type="button" class="button2"  onmouseover="this.style.backgroundColor='#9DC45F';this.style.color='#FFFFFF';"
+                onmouseout="this.style.backgroundColor='';this.style.color='#000000';">
+            资产损坏情况
+        </button>
+    </a>
+    
 </div>
 </body>
 </html>

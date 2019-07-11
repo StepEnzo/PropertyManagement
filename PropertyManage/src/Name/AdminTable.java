@@ -11,9 +11,15 @@ public class AdminTable {
 		private int id;
 		private String account;
 		private String password;
-		private String phone;
+		private String email;
 		private String name;
 		private int admincol;
+		public String getEmail() {
+			return email;
+		}
+		public void setEmail(String email) {
+			this.email = email;
+		}
 		/**
 		 * @return the id
 		 */
@@ -51,18 +57,6 @@ public class AdminTable {
 			this.password = password;
 		}
 		/**
-		 * @return the phone
-		 */
-		public String getPhone() {
-			return phone;
-		}
-		/**
-		 * @param phone the phone to set
-		 */
-		public void setPhone(String phone) {
-			this.phone = phone;
-		}
-		/**
 		 * @return the name
 		 */
 		public String getName() {
@@ -90,16 +84,16 @@ public class AdminTable {
 		 * @param id
 		 * @param account
 		 * @param password
-		 * @param phone
+		 * @param email
 		 * @param name
 		 * @param admincol
 		 */
-		public AdminTable(int id, String account, String password, String phone, String name, int admincol) {
+		public AdminTable(int id, String account, String password, String email, String name, int admincol) {
 			super();
 			this.id = id;
 			this.account = account;
 			this.password = password;
-			this.phone = phone;
+			this.email = email;
 			this.name = name;
 			this.admincol = admincol;
 		}

@@ -361,4 +361,25 @@
     <url-pattern>/sendEmail</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <description></description>
+     <display-name>PrintBarcode</display-name>
+    <servlet-name>PrintBarcode</servlet-name>
+    <servlet-class>AdminServlet.PrintBarcodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PrintBarcode</servlet-name>
+    <url-pattern>/PrintBarcode</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+     <display-name>DamageServlet</display-name>
+    <servlet-name>DamageServlet</servlet-name>
+    <servlet-class>damageManagement.DamageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DamageServlet</servlet-name>
+    <url-pattern>/DamageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

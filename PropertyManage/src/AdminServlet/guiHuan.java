@@ -1,4 +1,4 @@
-﻿package AdminServlet;
+package AdminServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +42,6 @@ public class guiHuan extends HttpServlet {
     	System.out.println(uid);
     	System.out.println(id);
     	
-    	PrintWriter out=response.getWriter();
     	 userid = Integer.parseInt(uid);
     	 pid = Integer.parseInt(id);
     	java.util.Date d=c.getTime();
@@ -51,6 +50,7 @@ public class guiHuan extends HttpServlet {
 		try {
 			boolean f1= propertyDAO.updateStatus(pid, "可用");
 			if(f1==false) {
+	    		PrintWriter out=response.getWriter();
 	    		out.print("<script>alert('财产状态更新失败，请重试');window.location='guihuanServlet';</script>");
 
 	    	}
@@ -59,14 +59,11 @@ public class guiHuan extends HttpServlet {
 			e.printStackTrace();
 		}
 		PusDAO pusDAO = new PusDAO();
-		if(pusDAO.changeUserRank(userid, pid,"已领取")){
-    		out.print("<script>alert('按时归还');window.location='guihuanServlet';</script>");
-		}else{
-			out.print("<script>alert('超时归还，已扣除该用户10点信用分');window.location='guihuanServlet';</script>");
-		}
     	boolean f=pusDAO.changeStatus(userid, pid,"已领取","已归还", date);
     	if(f==false) {
+    		PrintWriter out=response.getWriter();
     		out.print("<script>alert('表单更新失败，请重试');window.location='guihuanServlet';</script>");
+
     	}
 		
     	

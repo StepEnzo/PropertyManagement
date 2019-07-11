@@ -132,7 +132,7 @@ function checkForm(){
 	}
 	var check4=document.getElementById("4").value;
 	if (check4==null||check3==''){
-			alert("电话号码不能为空！");
+			alert("email不能为空！");
 			return false;
 	}
 	var check5=document.getElementById("5").value;
@@ -162,8 +162,8 @@ function checkForm(){
     <td width="350px"><input id="2" type="text" name="password" value="${admin.password}"></td>
     </tr>
     <tr>
-    <td><label>电话号码</label></td>
-    <td width="350px"><input id="3" type="text" name="phone" value="${admin.phone}"></td>
+    <td><label>email</label></td>
+    <td width="350px"><input id="3" type="text" name="email" value="${admin.email}"></td>
     </tr>
     <tr>
     <td><label>姓名</label></td>

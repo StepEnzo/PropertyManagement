@@ -29,7 +29,7 @@ function checkForm(){
     }
     
 form.style {
-    max-width: 500px;
+    width: 540px;
     padding: 30px 30px 20px 30px;
     font: 12px Arial, Helvetica, sans-serif;
     border-radius: 5px;
@@ -107,6 +107,7 @@ table.style {
 	border-width: 1px;
 	border-color: #999999;
 	border-collapse: collapse;
+	width:600px;
 }
 table.style th {
 	background:#9DC45F;
@@ -146,6 +147,7 @@ table.style td {
     	<th>购买日期</th>
     	<th>状态</th>
     	<th>出借历史</th>
+			<th>打印条形码</th>
     	</tr>
   	 <c:forEach var="property" items = "${propertys}" varStatus="Number">
   	 <tr>
@@ -157,6 +159,7 @@ table.style td {
    		<th> ${property.date}</th>
     	<th> ${property.status}</th>
     	<th> <a href="PropertyHistory?propertyid=${property.pid}">出借历史</a></th>
+		 <th><a href="PrintBarcode?id=${property.pid}&guanjianci=<%=request.getParameter("name")%>">打印</a></th>
 
    	</c:forEach>
   	  </table>

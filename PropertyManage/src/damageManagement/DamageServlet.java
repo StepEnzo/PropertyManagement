@@ -1,7 +1,5 @@
 package damageManagement;
 
-import net.sf.json.JSONArray;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +14,13 @@ import java.util.List;
 public class DamageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        //123321112
 
         String tag = request.getParameter("tag");
-        String id = request.getParameter("id");
-        String pid = request.getParameter("pid");
+        System.out.print(2);
+        System.out.print(tag);
+        int id = Integer.parseInt(request.getParameter("id"));
+        int pid =Integer.parseInt(request.getParameter("pid"));
         String level = request.getParameter("level");
         String solution = request.getParameter("solution");
 
@@ -30,11 +31,12 @@ public class DamageServlet extends HttpServlet {
         DamageManagement dm = new DamageManagement();
         switch (tag) {
             case "add":
+            	System.out.print(1);
                 pw.println(dm.addDamageInfo(pid, level, solution) ? "Add item successful" : "Add failed");
                 pw.flush();
                 break;
             case "edit":
-                pw.println(dm.editDamageInfo(pid, level, solution) ? "Edit successful" : "Edit failed");
+                pw.println(dm.editDamageInfo(id,pid, level, solution) ? "Edit successful" : "Edit failed");
                 pw.flush();
                 break;
             case "delete":
@@ -43,29 +45,14 @@ public class DamageServlet extends HttpServlet {
                 break;
         }
         pw.close();
+//        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String offset = request.getParameter("offset");
-        offset = new String(offset.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String limit = request.getParameter("limit");
-        limit = new String(limit.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-
         DamageManagement dm = new DamageManagement();
-
         List<DamageBean> dbs;
-
-        dbs = dm.getDamageInfoList(Integer.parseInt(offset), Integer.parseInt(limit));
-
-        JSONArray jsonArray = JSONArray.fromObject(dbs);
-        System.out.println(jsonArray.toString());
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-
-        PrintWriter printWriter = response.getWriter();
-        printWriter.print(jsonArray.toString());
-        printWriter.flush();
-        printWriter.close();
+        dbs = dm.getDamageInfo();
+        request.setAttribute("damages",dbs);
+        request.getRequestDispatcher("Damage.jsp").forward(request,response);
     }
 }

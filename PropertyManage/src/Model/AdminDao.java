@@ -15,7 +15,7 @@ import Name.AdminTable;
 public class AdminDao {
 	
 	
-	public boolean AddAdmin(String account,String password,String phone,String name) throws SQLException{
+	public boolean AddAdmin(String account,String password,String email,String name) throws SQLException{
 		Connection conn =null;
 		try {
 			conn= Mysql.getCon();
@@ -23,7 +23,7 @@ public class AdminDao {
 			String sqlj ="select * from admin where account= '"+account+"'";
 			ResultSet rs=stmt.executeQuery(sqlj);
 			if(rs.next()) return false;
-			String sql="insert into admin(`account`,`password`,`phone`,`name`)values('"+account+"','"+password+"','"+phone+"','"+name+"')"; 
+			String sql="insert into admin(`account`,`password`,`email`,`name`)values('"+account+"','"+password+"','"+email+"','"+name+"')"; 
 			int judge =stmt.executeUpdate(sql);
 			if(judge==1) return true;
 			else return false;
@@ -73,8 +73,8 @@ public class AdminDao {
 			String account = admin.getAccount();
 			String password = admin.getPassword();
 			String name = admin.getName();
-			String phone =admin.getPhone();
-			String sql="update admin set account ='"+account+"', password='"+password+"', name='"+name+"', phone='"+phone+"' where id= "+id;
+			String email =admin.getEmail();
+			String sql="update admin set account ='"+account+"', password='"+password+"', name='"+name+"', email='"+email+"' where id= "+id;
 			int judge=stmt.executeUpdate(sql);
 			if(judge==1) return true;
 			else  return false;
@@ -99,7 +99,7 @@ public class AdminDao {
 			conn=Mysql.getCon();
 			Statement stmt = conn.createStatement();
 			String sql="select * from admin where"
-				+ "(account like '%"+search+"%' or password like '%"+search+"%' or phone like '%"+search+"%'"
+				+ "(account like '%"+search+"%' or password like '%"+search+"%' or email like '%"+search+"%'"
 						+ "or name like '%"+search+"%') and admincol=1";
 			ResultSet rs=stmt.executeQuery(sql);
 			while(rs.next()){
@@ -107,7 +107,7 @@ public class AdminDao {
 				admin.setId(rs.getInt("id"));
 				admin.setAccount(rs.getString("account"));
 				admin.setPassword(rs.getString("password"));
-				admin.setPhone(rs.getString("phone"));
+				admin.setEmail(rs.getString("email"));
 				admin.setName(rs.getString("name"));
 				AdminList.add(admin);
 			}
@@ -139,7 +139,7 @@ public class AdminDao {
 				admin.setId(id);
 				admin.setAccount(rs.getString("account"));
 				admin.setPassword(rs.getString("password"));
-				admin.setPhone(rs.getString("phone"));
+				admin.setEmail(rs.getString("email"));
 				admin.setName(rs.getString("name"));
 //				AdminList.add(admin);
 			}

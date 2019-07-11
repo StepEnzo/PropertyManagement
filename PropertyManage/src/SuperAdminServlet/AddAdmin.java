@@ -42,13 +42,13 @@ public class AddAdmin extends HttpServlet {
 
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
+		String email= request.getParameter("email");
 		String name = request.getParameter("name");
 		
 		AdminDao a = new AdminDao();
 		boolean judge;
 		try {
-			judge = a.AddAdmin(account,password,phone,name);
+			judge = a.AddAdmin(account,password,email,name);
 			if(judge==false) {
 				out.print("<script>alert('添加失败！');window.location='AddAdmin.jsp';</script>");
 			}

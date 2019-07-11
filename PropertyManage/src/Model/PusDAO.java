@@ -27,8 +27,8 @@ public class PusDAO {
 		return new PusDAO();
 	}
 	
-	/*	ÏòÊı¾İ¿âpus±íÖĞ²åÈëĞÂµÄÒ»ĞĞ¡£
-	 *  @param PusÀàdata
+	/*	å‘æ•°æ®åº“pusè¡¨ä¸­æ’å…¥æ–°çš„ä¸€è¡Œã€‚
+	 *  @param Pusç±»data
 	 *  
 	 */
 	public boolean insert(Pus data) {
@@ -45,7 +45,7 @@ public class PusDAO {
 			int i=stmt.executeUpdate(sql);
 			if(i!=1) {
 				f=false;
-				System.out.println("²åÈëÊ§°Ü£¡");
+				System.out.println("æ’å…¥å¤±è´¥ï¼");
 			}
 			return f;
 	}catch (SQLException s) {
@@ -63,9 +63,9 @@ public class PusDAO {
 	}
 	
 	/*
-	 * Í¨¹ıÊäÈëµÄÓÃ»§id´Ópus±íÖĞ²éÑ¯ÓëÆäÏà¹ØµÄÊı¾İ¡£
-	 * @param ÓÃ»§id£¬int
-	 * @return PusÀàµÄÁĞ±í
+	 * é€šè¿‡è¾“å…¥çš„ç”¨æˆ·idä»pusè¡¨ä¸­æŸ¥è¯¢ä¸å…¶ç›¸å…³çš„æ•°æ®ã€‚
+	 * @param ç”¨æˆ·idï¼Œint
+	 * @return Pusç±»çš„åˆ—è¡¨
 	 */
 	public ArrayList<Pus> selectByUserid(int id) {
 		Connection conn = null;
@@ -101,9 +101,9 @@ public class PusDAO {
 	
 	
 	/*
-	 * Í¨¹ıÊäÈëµÄ×Ê²úid´Ópus±íÖĞ²éÑ¯ÓëÆäÏà¹ØµÄÊı¾İ¡£
-	 * @param ²úÆ·id£¬int
-	 * @return PusÀàµÄÁĞ±í
+	 * é€šè¿‡è¾“å…¥çš„èµ„äº§idä»pusè¡¨ä¸­æŸ¥è¯¢ä¸å…¶ç›¸å…³çš„æ•°æ®ã€‚
+	 * @param äº§å“idï¼Œint
+	 * @return Pusç±»çš„åˆ—è¡¨
 	 */
 	public ArrayList<Pus> selectByPropertyid(int id) {
 		Connection conn = null;
@@ -139,9 +139,9 @@ public class PusDAO {
 	}
 	
 	/*
-	 * Í¨¹ıÊäÈëµÄ×´Ì¬ÀàĞÍ´Ópus±íÖĞ²éÑ¯ÓëÆäÏà¹ØµÄÊı¾İ¡£
-	 * @param ±íµ¥×´Ì¬ status
-	 * @return PusÀàµÄÁĞ±í
+	 * é€šè¿‡è¾“å…¥çš„çŠ¶æ€ç±»å‹ä»pusè¡¨ä¸­æŸ¥è¯¢ä¸å…¶ç›¸å…³çš„æ•°æ®ã€‚
+	 * @param è¡¨å•çŠ¶æ€ status
+	 * @return Pusç±»çš„åˆ—è¡¨
 	 */
 	public ArrayList<Pus> selectByStatus(String status) {
 		Connection conn = null;
@@ -176,13 +176,13 @@ public class PusDAO {
 	}
 	
 	/*
-	 * Í¨¹ıÊäÈëµÄuserid,propertyid£¬status¸Ä±äPus±íÖĞ¶ÔÓ¦ĞĞµÄstatus£¬dateÎªÊäÈëµÄchangedstatus,date
-	 * @param userid ÓÃ»§id
-	 * @param propertyid ×Ê²úid
-	 * @param  status µ±Ç°µÄ×´Ì¬
-	 * @param changedstatus ÏëÒª¸Ä±äµÄ×´Ì¬
-	 * @param date Ö´ĞĞ¸Ã²Ù×÷µÄÈÕÆÚ
-	 * @return BooleanÖµ£¬ÊÇ·ñ¸üĞÂ³É¹¦¡£
+	 * é€šè¿‡è¾“å…¥çš„userid,propertyidï¼Œstatusæ”¹å˜Pusè¡¨ä¸­å¯¹åº”è¡Œçš„statusï¼Œdateä¸ºè¾“å…¥çš„changedstatus,date
+	 * @param userid ç”¨æˆ·id
+	 * @param propertyid èµ„äº§id
+	 * @param  status å½“å‰çš„çŠ¶æ€
+	 * @param changedstatus æƒ³è¦æ”¹å˜çš„çŠ¶æ€
+	 * @param date æ‰§è¡Œè¯¥æ“ä½œçš„æ—¥æœŸ
+	 * @return Booleanå€¼ï¼Œæ˜¯å¦æ›´æ–°æˆåŠŸã€‚
 	 */
 	public boolean changeStatus(int userid,int propertyid,String status,String changedstatus,Date date) {
 		Connection conn = null;
@@ -208,47 +208,9 @@ public class PusDAO {
 			}
 		}
 	}
-
-                /*
-	 * Í¨¹ıÊäÈëµÄuserid,propertyid£¬status²éÑ¯×Ê²ú±»ÁìÈ¡µÄÊ±¼ä£¬Èç¹û¹é»¹Ê±¼äÓëÁìÈ¡Ê±¼ä³¬¹ı30Ìì£¬Ôò¿Û³ıÓÃ»§10µãĞÅÓÃ·Ö
-	 * @param userid ÓÃ»§id
-	 * @param propertyid ×Ê²úid
-	 * @param  status µ±Ç°µÄ×´Ì¬
-	 * @return BooleanÖµ£¬ÊÇ·ñ°´Ê±¹é»¹¡£
-	 */
-	public boolean changeUserRank(int userid,int propertyid,String status){
-		Connection conn = null;
-		try {
-			conn = Mysql.getCon();
-			Statement stmt = conn.createStatement();
-			String sql="select date form pus where status = '"+status+"' and userid = "+userid+" and propertyid ="+propertyid; 
-			ResultSet rs=stmt.executeQuery(sql);
-			java.sql.Date date = rs.getDate("date");
-			java.util.Date d=new java.util.Date (date.getTime());
-			long day=(System.currentTimeMillis()-d.getTime())/(1000*60*60*24);
-			if (day>=30){
-				String sql1="update user set rank=(rank-10) where userid = "+userid; 
-				stmt.executeQuery(sql1);
-				return false;
-			}else
-				return true;
-			
-	}catch (SQLException s) {
-		System.out.println(s);	
-		return false;
-	}
-		finally {
-			if (conn != null) {
-				try {					
-					conn.close();					
-				} catch (SQLException ignore) {					
-				}
-			}
-		}
-	}
 	
 	/*
-	 * Í¨¹ıÓÃ»§idºÍ¼ÇÂ¼±í×´Ì¬ ·µ»ØPusTableµÄÁĞ±í
+	 * é€šè¿‡ç”¨æˆ·idå’Œè®°å½•è¡¨çŠ¶æ€ è¿”å›PusTableçš„åˆ—è¡¨
 	 * @param user.id pus.status
 	 * @return List<PusTable>
 	 */

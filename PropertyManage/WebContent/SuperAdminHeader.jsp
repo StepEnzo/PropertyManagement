@@ -47,7 +47,7 @@
     <div class="welcome">欢迎回来，超管</div>
     <div class="head">资产管理系统</div>  
     <div class="logout">
-        <a href="superAdminLogin.jsp">
+        <a href="SuperAdminLogin.jsp">
             <button type="button" class="button1"  onmouseover="this.style.backgroundColor='#80A24A';this.style.color='#FFFFFF';"
                  onmouseout="this.style.backgroundColor='';this.style.color='#000000';">
                 退出登录
