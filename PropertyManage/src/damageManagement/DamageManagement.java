@@ -3,6 +3,7 @@ package damageManagement;
 import Model.Mysql;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,10 +13,9 @@ import java.util.List;
 public class DamageManagement {
     public List<DamageBean> getDamageInfo(){
         List<DamageBean> damageBeans=new ArrayList<DamageBean>();
-        Connection c=null;
         try{
-            Statement s=c.createStatement();
-            String sql="select * form damage";
+            Statement s=Mysql.getCon().createStatement();
+            String sql="select * from damage";
             ResultSet resultSet=s.executeQuery(sql);
             while(resultSet.next()){
                 DamageBean damageBean=new DamageBean();
@@ -48,6 +48,47 @@ public class DamageManagement {
         return false;
     }
 
+//  public boolean addDamageInfo(int pid, String level, String solution) {
+//	  Connection a = null;
+//  try {
+//	  a = Mysql.getCon();
+//	  Statement s = a.createStatement();
+//	  String sql="select * from propertyitem where pid ='" + pid+"'";
+//	  ResultSet rs = s.executeQuery(sql);
+//	  if(!rs.next())
+//		{
+//			String sql1 = "insert into damage(pid,level,solution) values (?,?,?)";
+//			PreparedStatement ps1 = a.prepareStatement(sql1);
+//			ps1.setInt(1,pid);
+//			ps1.setString(2,level);
+//			ps1.setString(3,solution);
+//
+//			int flag = ps1.executeUpdate();
+//			if (flag > 0) {
+//				System.out.print("1");
+//				return true; //成功
+//			}
+//			else
+//			{
+//				System.out.print("-2");
+//				return false;//插入失败
+//			}
+//		}
+//		else return false;//用户名重复
+//	}
+//	catch(SQLException e) {
+//		System.out.println(e);
+//		return false;
+//	}finally {
+//		if (a != null) {
+//			try {
+//				a.close();
+//			} catch (SQLException ignore) {
+//			}
+//		}
+//	}
+//}
+
     public boolean editDamageInfo(int id,int pid, String level, String solution) {
         try {
             Statement stmt = Mysql.getCon().createStatement();
@@ -65,9 +106,9 @@ public class DamageManagement {
     public boolean deleteDamageItem(int id) {
         try{
             Statement stmt = Mysql.getCon().createStatement();
-            ResultSet rs = stmt.executeQuery("select from damage where id = " + id);
+            ResultSet rs = stmt.executeQuery("select * from damage where id = " + id);
             if (rs.next()) {
-                stmt.executeUpdate("delete from damage where id = " + id);
+                stmt.executeUpdate("delete from damage where damage.id = " + id);
                 return true;
             }
         } catch (SQLException e) {

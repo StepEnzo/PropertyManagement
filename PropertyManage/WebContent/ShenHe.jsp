@@ -147,8 +147,8 @@ table.style td {
     <th> ${shenhe.date}</th>
     <th>${shenhe.rank }</th>
     <th> <a href="yes?userid=${shenhe.userid }&pid=${shenhe.propertyid }">批准</a></th>
-    <th> <a href="no?userid=${shenhe.userid }&pid=${shenhe.propertyid }">拒绝</a></th>
-        <th><a href="sendEmail?email=${shenhe.email}">发送邮件</a></th>
+    <th> <a href="no?userid=${shenhe.userid}&pid=${shenhe.propertyid }">拒绝</a></th>
+    <th><a href="sendEmail?email=${shenhe.email}">发送邮件</a></th>
    </c:forEach>
     </table>
     
