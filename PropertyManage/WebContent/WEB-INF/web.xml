@@ -14,6 +14,7 @@
     <servlet-name>ShenheServlet</servlet-name>
     <url-pattern>/ShenheServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>yes</display-name>
@@ -24,6 +25,7 @@
     <servlet-name>yes</servlet-name>
     <url-pattern>/yes</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>no</display-name>
@@ -34,6 +36,7 @@
     <servlet-name>no</servlet-name>
     <url-pattern>/no</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>addProperty</display-name>
@@ -381,5 +384,16 @@
   <servlet-mapping>
     <servlet-name>DamageServlet</servlet-name>
     <url-pattern>/DamageServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+     <display-name>EditDamage</display-name>
+    <servlet-name>EditDamage</servlet-name>
+    <servlet-class>damageManagement.EditDamage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDamage</servlet-name>
+    <url-pattern>/EditDamage</url-pattern>
   </servlet-mapping>
 </web-app>

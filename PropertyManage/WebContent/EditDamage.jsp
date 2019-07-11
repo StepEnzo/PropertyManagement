@@ -142,7 +142,7 @@
         <table>
             <tr>
             <td><label>编号</label></td>
-            <td width="350px"><input  disabled name="id" ><%=request.getParameter("id")%></td>
+            <td width="350px"><input type="text" name="id"  value="${damage}"></td>
             </tr>
             <tr>
                 <td><label>资产编号</label></td>

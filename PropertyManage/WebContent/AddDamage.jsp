@@ -138,7 +138,7 @@
 <jsp:include page="AdminIndex.jsp" />
 
 <div class="box">
-    <form class="style" action="DamageServlet?tag='add'" method="post" onsubmit="return checkForm();">
+    <form class="style" action="DamageServlet?tag=add" method="post" onsubmit="return checkForm();">
         <table>
             <tr>
                 <td><label>资产编号</label></td>

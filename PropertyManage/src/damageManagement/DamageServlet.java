@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @WebServlet(name = "DamageServlet")
@@ -17,13 +16,6 @@ public class DamageServlet extends HttpServlet {
         //123321112
 
         String tag = request.getParameter("tag");
-        System.out.print(2);
-        System.out.print(tag);
-        int id = Integer.parseInt(request.getParameter("id"));
-        int pid =Integer.parseInt(request.getParameter("pid"));
-        String level = request.getParameter("level");
-        String solution = request.getParameter("solution");
-
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
@@ -31,28 +23,49 @@ public class DamageServlet extends HttpServlet {
         DamageManagement dm = new DamageManagement();
         switch (tag) {
             case "add":
-            	System.out.print(1);
+                Integer pid =Integer.parseInt(request.getParameter("pid"));
+                String level = request.getParameter("level");
+                String solution = request.getParameter("solution");
                 pw.println(dm.addDamageInfo(pid, level, solution) ? "Add item successful" : "Add failed");
-                pw.flush();
                 break;
             case "edit":
-                pw.println(dm.editDamageInfo(id,pid, level, solution) ? "Edit successful" : "Edit failed");
-                pw.flush();
-                break;
-            case "delete":
-                pw.println(dm.deleteDamageItem(id) ? "Delete successful" : "Delete failed");
-                pw.flush();
+                int id1 = Integer.parseInt(request.getParameter("id"));
+                int pid1 =Integer.parseInt(request.getParameter("pid"));
+                String level1 = request.getParameter("level");
+                String solution1 = request.getParameter("solution");
+                pw.println(dm.editDamageInfo(id1,pid1, level1, solution1) ? "Edit successful" : "Edit failed");
                 break;
         }
-        pw.close();
-//        doGet(request,response);
+        DamageManagement damage = new DamageManagement();
+        List<DamageBean> dbs;
+        dbs = damage.getDamageInfo();
+        request.setAttribute("damages",dbs);
+        request.getRequestDispatcher("Damage.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DamageManagement dm = new DamageManagement();
-        List<DamageBean> dbs;
-        dbs = dm.getDamageInfo();
-        request.setAttribute("damages",dbs);
-        request.getRequestDispatcher("Damage.jsp").forward(request,response);
+        response.setContentType("text/html; charset=UTF-8");
+    	request.setCharacterEncoding("utf-8");
+    	String tag = request.getParameter("tag");
+    	System.out.print(tag);
+    	if(tag==null){
+        	DamageManagement dm = new DamageManagement();
+            List<DamageBean> dbs;
+            dbs = dm.getDamageInfo();
+            request.setAttribute("damages",dbs);
+            request.getRequestDispatcher("Damage.jsp").forward(request,response);
+    	}
+    	else if(tag.equals("delete")){
+    		DamageManagement damage = new DamageManagement();
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html");
+            PrintWriter pw = response.getWriter();
+            Integer id2 = Integer.parseInt(request.getParameter("id"));
+            pw.println(damage.deleteDamageItem(id2) ? "Delete successful" : "Delete failed");
+            List<DamageBean> dbs;
+            dbs = damage.getDamageInfo();
+            request.setAttribute("damages",dbs);
+            request.getRequestDispatcher("Damage.jsp").forward(request,response);
+    	}
     }
 }
