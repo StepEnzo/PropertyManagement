@@ -47,10 +47,10 @@ public class UpdateAdmin extends HttpServlet {
 		int  id = Integer.parseInt(ids);
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
 		String name = request.getParameter("name");
-		
-		AdminTable admin = new AdminTable(id,account,password,phone,name,1);
+		System.out.print(email);
+		AdminTable admin = new AdminTable(id,account,password,email,name,1);
 		
 		AdminDao a = new AdminDao();
 		boolean judge;
