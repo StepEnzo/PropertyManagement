@@ -128,7 +128,7 @@ table.style td {
     	<th>设备名称</th>
     	<th>用户编号</th>
     	<th>用户名称</th>
-    	<th>用户电话</th>
+    	<th>用户email</th>
     	<th>日期</th>
     	<th>状态</th>
 
@@ -139,7 +139,7 @@ table.style td {
     	<th> ${pus.propertyname}</th>
     	<th> ${pus.userid}</th>
     	<th> ${pus.username}</th>
-    	<th> ${pus.phone}</th>
+    	<th> ${pus.email}</th>
     	<th> ${pus.date}</th>
     	<th> ${pus.status}</th>
 
